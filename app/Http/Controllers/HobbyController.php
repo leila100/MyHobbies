@@ -28,7 +28,7 @@ class HobbyController extends Controller
      */
     public function create()
     {
-        //
+        return view('hobby.create');
     }
 
     /**
@@ -39,7 +39,12 @@ class HobbyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newHobby = new Hobby([
+            'name' => $request->name,
+            'description' => $request['description'] // same as $request->description
+        ]);
+        $newHobby->save();
+        return $this->index(); // Call index method to display hobbies
     }
 
     /**
