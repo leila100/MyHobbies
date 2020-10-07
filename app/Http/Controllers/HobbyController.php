@@ -49,7 +49,9 @@ class HobbyController extends Controller
             'description' => $request['description'] // same as $request->description
         ]);
         $newHobby->save();
-        return $this->index(); // Call index method to display hobbies
+        return $this->index()->with([
+            'message_success' => 'The hobby <b>' . $newHobby->name . '</b> was successfully added.'
+        ]); // Call index method to display hobbies
     }
 
     /**
