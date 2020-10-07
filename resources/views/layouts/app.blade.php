@@ -43,6 +43,9 @@
                         <li>
                             <a class="nav-link {{Request::is('info') ? ' active' : ''}}" href="{{ url('/info') }}">Info</a>
                         </li>
+                        <li>
+                            <a class="nav-link {{Request::is('hobby*') ? ' active' : ''}}" href="{{ url('/hobby') }}">Hobbies</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
