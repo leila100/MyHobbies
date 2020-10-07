@@ -20,6 +20,9 @@ Route::get('/info', function () {
     return view('info');
 });
 
+// Access the index function in the HobbyController file, and display the results in /test
+Route::get('/test/{name}/foo/{age}', 'HobbyController@index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
