@@ -12,9 +12,9 @@ class HobbyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($name, $age)
+    public function index()
     {
-        dd($name . ' is ' . $age . ' years old.'); // Helper function in Laravel - die and dump - Prints and stops
+        dd('index'); // Helper function in Laravel - die and dump - Prints and stops
     }
 
     /**
