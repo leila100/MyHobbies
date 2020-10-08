@@ -28,7 +28,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('tag.create');
     }
 
     /**
@@ -39,7 +39,19 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3',
+            'style' => 'required'
+        ]);
+
+        $newTag = new Tag([
+            'name' => $request->name,
+            'style' => $request->style
+        ]);
+        $newTag->save();
+        return $this->index()->with([
+            'message_success' => 'The tag <b>' . $newTag->name . '</b> was successfully added.'
+        ]);
     }
 
     /**
