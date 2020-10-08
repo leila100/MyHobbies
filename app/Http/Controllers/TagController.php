@@ -73,7 +73,9 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('tag.edit')->with([
+            'tag' => $tag
+        ]);
     }
 
     /**
@@ -85,7 +87,18 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3',
+            'style' => 'required'
+        ]);
+
+        $tag->update([
+            'name' => $request->name,
+            'style' => $request->style
+        ]);
+        return $this->index()->with([
+            'message_success' => 'The tag <b>' . $tag->name . '</b> was successfully updated.'
+        ]);
     }
 
     /**
