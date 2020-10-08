@@ -109,6 +109,10 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $oldName = $tag->name;
+        $tag->delete();
+        return $this->index()->with([
+            'message_success' => 'The tag <b>' . $oldName . '</b> was successfully deleted.'
+        ]);
     }
 }
