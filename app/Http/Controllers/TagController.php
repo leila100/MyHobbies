@@ -14,7 +14,11 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::all();
+        //dd($hobbies); // Helper function in Laravel - die and dump - Prints and stops
+        return view('tag.index')->with([
+            'tags' => $tags
+        ]);
     }
 
     /**
