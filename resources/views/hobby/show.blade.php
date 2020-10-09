@@ -6,9 +6,14 @@
         <div class="col-md-11">
             <div class="card">
                 <div class="card-header">Hobby Details</div>
-
                 <div class="card-body">
                     <strong>{{ $hobby->name }}</strong>
+                    <br>
+                    <p>
+                    @foreach ($hobby->tags as $tag)
+                        <span class="badge badge-{{$tag->style}}">{{$tag->name}}</span>
+                    @endforeach
+                    </p>
                     <p>{{ $hobby->description }}</p>
                 </div>
             </div>
