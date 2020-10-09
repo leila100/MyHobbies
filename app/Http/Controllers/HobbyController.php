@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class HobbyController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -44,12 +50,12 @@ class HobbyController extends Controller
         $request->validate([
             'name' => 'required|min:3',
             'description' => 'required|min:5',
-            'user_id' => auth()->id()
         ]);
 
         $newHobby = new Hobby([
             'name' => $request->name,
-            'description' => $request['description'] // same as $request->description
+            'description' => $request['description'], // same as $request->description
+            'user_id' => auth()->id()
         ]);
         $newHobby->save();
         return $this->index()->with([
