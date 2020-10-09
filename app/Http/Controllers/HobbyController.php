@@ -43,7 +43,8 @@ class HobbyController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3',
-            'description' => 'required|min:5'
+            'description' => 'required|min:5',
+            'user_id' => auth()->id()
         ]);
 
         $newHobby = new Hobby([
