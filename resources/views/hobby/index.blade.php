@@ -14,13 +14,16 @@
                             <a title="Show Details" href="/hobby/{{ $hobby->id }}">{{ $hobby -> name }}</a>
                             @auth
                             <a class="btn btn-light btn-sm ml-2" href="/hobby/{{ $hobby->id }}/edit" title="Edit hobby"><i class="fas fa-pen"></i> Edit</a>
+                            @endauth
+                            <span class="mx-2">Posted by {{ $hobby->user->name }} ({{ $hobby->user->hobbies->count() }} hobbies)</span>
+                            @auth
                             <form class="float-right" action="/hobby/{{ $hobby->id }}" method="POST" style="display:inline">
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete">
                             </form>
                             @endauth
-                            <span>{{ $hobby->created_at->diffForHumans() }}</span>
+                            <span class="float-right mx-2">{{ $hobby->created_at->diffForHumans() }}</span>
                         </li>
                         @endforeach
                     </ul>
