@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('page_title', 'Edit Hobby')
 
 @section('content')
 <div class="container">

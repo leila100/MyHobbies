@@ -1,21 +1,22 @@
 @extends('layouts.app')
-@section('page_title', 'Hobby Details')
+@section('page_title', 'User Details')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-11">
             <div class="card">
-                <div class="card-header">Hobby Details</div>
+                <div class="card-header">{{ $user->name }}</div>
                 <div class="card-body">
-                    <strong>{{ $hobby->name }}</strong>
+                    <b>My motto:</b><br>{{ $user->motto }}
                     <br>
-                    <p>
-                    @foreach ($hobby->tags as $tag)
-                        <span class="badge badge-{{$tag->style}}">{{$tag->name}}</span>
+                    <p class="mt-2"><b>About Me:</b><br>{{ $user->about_me }}</p>
+                    <h4>Hobbies</h4>
+                    <ul>
+                    @foreach ($user->hobbies as $hobby)
+                        <li>{{$hobby->name}}</li>
                     @endforeach
-                    </p>
-                    <p>{{ $hobby->description }}</p>
+                    </ul>
                 </div>
             </div>
             <div class="mt-2">
