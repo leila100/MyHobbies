@@ -23,6 +23,9 @@
                     </ul>
                 </div>
             </div>
+            <div class="mt-3">
+                {{ $hobbies->links() }}
+            </div>
             <div class="mt-2">
                 <a href="/hobby/create" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i> Add New Hobby</a>
             </div>

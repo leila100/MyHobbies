@@ -14,8 +14,10 @@ class HobbyController extends Controller
      */
     public function index()
     {
-        $hobbies = Hobby::all();
         //dd($hobbies); // Helper function in Laravel - die and dump - Prints and stops
+        // $hobbies = Hobby::all();
+        $hobbies = Hobby::paginate(10);
+
         return view('hobby.index')->with([
             'hobbies' => $hobbies
         ]);
