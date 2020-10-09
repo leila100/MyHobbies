@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Hobby;
 use Illuminate\Http\Request;
+//use Illuminate\Support\Carbon; // Used to format time/dates
 
 class HobbyController extends Controller
 {
@@ -22,7 +23,8 @@ class HobbyController extends Controller
     {
         //dd($hobbies); // Helper function in Laravel - die and dump - Prints and stops
         // $hobbies = Hobby::all();
-        $hobbies = Hobby::paginate(10);
+        // $hobbies = Hobby::paginate(10);
+        $hobbies = Hobby::orderBy('created_at', 'DESC')->paginate(10);
 
         return view('hobby.index')->with([
             'hobbies' => $hobbies
