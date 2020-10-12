@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Hobby;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 //use Illuminate\Support\Carbon; // Used to format time/dates
 
 class HobbyController extends Controller
@@ -80,7 +82,8 @@ class HobbyController extends Controller
 
         return view('hobby.show')->with([
             'hobby' => $hobby,
-            'availableTags' => $availableTags
+            'availableTags' => $availableTags,
+            'message_success' => Session::get('message_success')
         ]);
     }
 
