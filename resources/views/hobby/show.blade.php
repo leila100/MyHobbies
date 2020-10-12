@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="mt-2">
-                <a href="{{URL::previous()}}" class="btn btn-primary btn-sm"><i class="fas fa-arrow-circle-left"></i> Back to Hobbies</a>
+                <a href="/hobby" class="btn btn-primary btn-sm"><i class="fas fa-arrow-circle-left"></i> Back to Hobbies</a>
             </div>
         </div>
     </div>
