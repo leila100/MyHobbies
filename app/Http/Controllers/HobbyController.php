@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Hobby;
+use App\Tag;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Carbon; // Used to format time/dates
 
@@ -73,8 +74,13 @@ class HobbyController extends Controller
      */
     public function show(Hobby $hobby)
     {
+        $allTags = Tag::all();
+        $usedTags = $hobby->tags;
+        $availableTags = $allTags->diff($usedTags);
+
         return view('hobby.show')->with([
-            'hobby' => $hobby
+            'hobby' => $hobby,
+            'availableTags' => $availableTags
         ]);
     }
 
