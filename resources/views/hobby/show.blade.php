@@ -11,18 +11,22 @@
                     <strong>{{ $hobby->name }}</strong>
                     <p>{{ $hobby->description }}</p>
                     <br>
-                    <strong>Used Tags (click to remove)</strong>
-                    <p>
-                    @foreach ($hobby->tags as $tag)
-                        <a href="/hobby/{{$hobby->id}}/tag/{{$tag->id}}/detach"><span class="badge badge-{{$tag->style}}">{{$tag->name}}</span></a>
-                    @endforeach
-                    </p>
-                    <strong>Available Tags (click to add)</strong>
-                    <p>
-                    @foreach ($availableTags as $tag)
-                        <a href="/hobby/{{$hobby->id}}/tag/{{$tag->id}}/attach"><span class="badge badge-{{$tag->style}}">{{$tag->name}}</span></a>
-                    @endforeach
-                    </p>
+                    @if ($hobby->tags->count() > 0)
+                        <strong>Used Tags (click to remove)</strong>
+                        <p>
+                        @foreach ($hobby->tags as $tag)
+                            <a href="/hobby/{{$hobby->id}}/tag/{{$tag->id}}/detach"><span class="badge badge-{{$tag->style}}">{{$tag->name}}</span></a>
+                        @endforeach
+                        </p>
+                    @endif
+                    @if ($availableTags->count() > 0)
+                        <strong>Available Tags (click to add)</strong>
+                        <p>
+                            @foreach ($availableTags as $tag)
+                                <a href="/hobby/{{$hobby->id}}/tag/{{$tag->id}}/attach"><span class="badge badge-{{$tag->style}}">{{$tag->name}}</span></a>
+                            @endforeach
+                        </p>
+                    @endif
                 </div>
             </div>
             <div class="mt-2">
