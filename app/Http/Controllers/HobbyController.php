@@ -6,7 +6,7 @@ use App\Hobby;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-
+use Intervention\Image\Facades\Image;
 //use Illuminate\Support\Carbon; // Used to format time/dates
 
 class HobbyController extends Controller
@@ -55,7 +55,7 @@ class HobbyController extends Controller
         $request->validate([
             'name' => 'required|min:3',
             'description' => 'required|min:5',
-            'image' => 'mimes:jpeg,bmp,png,gif,jpg|max:2',
+            'image' => 'mimes:jpeg,bmp,png,gif,jpg',
         ]);
 
         $newHobby = new Hobby([
@@ -119,8 +119,17 @@ class HobbyController extends Controller
         $request->validate([
             'name' => 'required|min:3',
             'description' => 'required|min:5',
-            'image' => 'mimes:jpeg,bmp,png,gif,jpg|max:2',
+            'image' => 'mimes:jpeg,bmp,png,gif,jpg',
         ]);
+
+        if ($request->image) {
+            $image = Image::make($request->image);
+            if ($image->width() > $image->height()) {
+                dd("Landscape");
+            } else {
+                dd("Portrait");
+            }
+        }
 
         $hobby->update([
             'name' => $request->name,
