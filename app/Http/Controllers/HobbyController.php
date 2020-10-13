@@ -124,10 +124,18 @@ class HobbyController extends Controller
 
         if ($request->image) {
             $image = Image::make($request->image);
-            if ($image->width() > $image->height()) {
-                dd("Landscape");
-            } else {
-                dd("Portrait");
+            if ($image->width() > $image->height()) { // Landscape format
+                $image
+                    ->widen(1200)->save(public_path() . "/img/hobbies/" . $hobby->id . "_large.jpg")
+                    ->widen(400)->pixelate(12)->save(public_path() . "/img/hobbies/" . $hobby->id . "_pixelated.jpg");
+                $image = Image::make($request->image);
+                $image->widen(60)->save(public_path() . "/img/hobbies/" . $hobby->id . "_thumb.jpg");
+            } else { // Portrait format
+                $image
+                    ->heighten(900)->save(public_path() . "/img/hobbies/" . $hobby->id . "_large.jpg")
+                    ->heighten(400)->pixelate(12)->save(public_path() . "/img/hobbies/" . $hobby->id . "_pixelated.jpg");
+                $image = Image::make($request->image);
+                $image->heighten(60)->save(public_path() . "/img/hobbies/" . $hobby->id . "_thumb.jpg");
             }
         }
 
