@@ -55,6 +55,7 @@ class HobbyController extends Controller
         $request->validate([
             'name' => 'required|min:3',
             'description' => 'required|min:5',
+            'image' => 'mimes:jpeg,bmp,png,gif,jpg|max:2',
         ]);
 
         $newHobby = new Hobby([
@@ -117,7 +118,8 @@ class HobbyController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3',
-            'description' => 'required|min:5'
+            'description' => 'required|min:5',
+            'image' => 'mimes:jpeg,bmp,png,gif,jpg|max:2',
         ]);
 
         $hobby->update([
