@@ -113,14 +113,14 @@ class UserController extends Controller
         $userPath = "/img/users/" . $userId;
         if ($image->width() > $image->height()) { // Landscape format
             $image
-                ->widen(1200)->save(public_path() . $userPath . "_large.jpg")
-                ->widen(400)->pixelate(12)->save(public_path() . $userPath . "_pixelated.jpg");
+                ->widen(500)->save(public_path() . $userPath . "_large.jpg")
+                ->widen(300)->pixelate(12)->save(public_path() . $userPath . "_pixelated.jpg");
             $image = Image::make($imageInput);
             $image->widen(60)->save(public_path() . $userPath . "_thumb.jpg");
         } else { // Portrait format
             $image
-                ->heighten(900)->save(public_path() . $userPath . "_large.jpg")
-                ->heighten(400)->pixelate(12)->save(public_path() . $userPath . "_pixelated.jpg");
+                ->heighten(500)->save(public_path() . $userPath . "_large.jpg")
+                ->heighten(300)->pixelate(12)->save(public_path() . $userPath . "_pixelated.jpg");
             $image = Image::make($imageInput);
             $image->heighten(60)->save(public_path() . $userPath . "_thumb.jpg");
         }

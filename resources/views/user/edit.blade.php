@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('page_title', 'Edit User')
+@section('page_title', 'Edit User Profile')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Edit User</div>
+                <div class="card-header">Edit User Profile</div>
                 <div class="card-body">
                     <form method="POST" action="/user/{{ $user->id }}" enctype="multipart/form-data" autocomplete="off">
                         @csrf

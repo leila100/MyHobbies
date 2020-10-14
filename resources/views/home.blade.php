@@ -12,9 +12,10 @@
                         <div class="col-md-9">
                             <h2>Hello {{ auth()->user()->name }}</h2>
                             <h5>Your Motto</h5>
-                            <p><p>{{ auth()->user()->motto ?? '' }}</p></p>
+                            <p>{{ auth()->user()->motto ?? '' }}</p>
                             <h5>Your "About Me" -Text</h5>
-                            <p><p>{{ auth()->user()->about_me ?? '' }}</p></p>
+                            <p>{{ auth()->user()->about_me ?? '' }}</p>
+                            <a href="/user/{{ auth()->user()->id }}/edit" class="btn btn-primary mb-3">Edit my Profile</a>
                         </div>
                         @if (file_exists('img/users/'.auth()->user()->id.'_large.jpg'))
                             <div class="col-md-3">
