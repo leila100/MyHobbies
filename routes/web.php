@@ -38,3 +38,9 @@ Route::get('/hobby/tag/{tag_id}', 'HobbyTagController@filterHobbies')->name('hob
 // Attach and detach tag to hobby routes
 Route::get('/hobby/{hobby_id}/tag/{tag_id}/attach', 'HobbyTagController@attachTag');
 Route::get('/hobby/{hobby_id}/tag/{tag_id}/detach', 'HobbyTagController@detachTag');
+
+// Delete the image of a hobby
+Route::get('/delete_images/hobby/{hobby_id}', 'HobbyController@deleteImages');
+
+// Delete the image of a user
+Route::get('/delete_images/user/{user_id}', 'UserController@deleteImages');
