@@ -32,13 +32,13 @@
                             </div>
                             <div class="col-md-3">
                                 @if (Auth::user() && file_exists('img/hobbies/'.$hobby->id.'_large.jpg'))
-                                    <a title="Show Larger" href="/img/hobbies/{{$hobby->id}}_large.jpg"  data-lightbox="400x300.jpg" data-title="{{ $hobby->name }}">
+                                    <a title="Show Larger" href="/img/hobbies/{{$hobby->id}}_large.jpg"  data-lightbox="{{$hobby->id}}_large.jpg" data-title="{{ $hobby->name }}">
                                         <img class="img-fluid" src="/img/hobbies/{{$hobby->id}}_large.jpg" alt="Hobby Large">
                                     </a>
                                     <i class="fa fa-search-plus"></i> Click image to enlarge
                                 @endif
                                 @if (!Auth::user() && file_exists('img/hobbies/'.$hobby->id.'_pixelated.jpg'))
-                                    <img class="img-fluid" src="/img/hobbies/{{$hobby->id}}_pixelated.jpg" alt="Hobby Pixelated">
+                                    <img src="/img/hobbies/{{$hobby->id}}_pixelated.jpg" alt="Hobby Pixelated">
                                 @endif
                             </div>
                         </div>

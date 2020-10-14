@@ -12,7 +12,9 @@
                             <div class="col-md-9">
                                 <b>My Motto:<br>{{$user->motto}}</b>
                                 <p class="mt-2"><b>About me:</b><br>{{$user->about_me}}</p>
-
+                                @if (Auth::user() && auth()->user()->id == $user->id)
+                                    <a href="/user/{{ $user->id }}/edit" class="btn btn-primary mb-3">Edit my Profile</a>
+                                @endif
                                 <h5>Hobbies of {{ $user->name }}</h5>
                                 <ul class="list-group">
                                     @if($user->hobbies->count() > 0)
@@ -40,9 +42,19 @@
                                     </p>
                                 @endif
                             </div>
-                            <div class="col-md-3">
-                                <img class="img-thumbnail" src="/img/300x400.jpg" alt="{{ $user->name }}">
-                            </div>
+                            @if (Auth::user() && file_exists('img/users/'.$user->id.'_large.jpg'))
+                                <div class="col-md-3">
+                                    <a title="Show Larger" href="/img/users/{{$user->id}}_large.jpg"  data-lightbox="{{$user->id}}_large.jpg" data-title="{{ $user->name }}">
+                                        <img class="img-fluid" src="/img/users/{{$user->id}}_large.jpg" alt="{{ $user->name }}">
+                                    </a>
+                                    <i class="fa fa-search-plus"></i> Click image to enlarge
+                                </div>
+                            @endif
+                            @if (!Auth::user() && file_exists('img/users/'.$user->id.'_pixelated.jpg'))
+                                <div class="col-md-3">
+                                    <img class="img-thumbnail" src="/img/users/{{$user->id}}_pixelated.jpg" alt="{{ $user->name }}">
+                                </div>
+                            @endif
                         </div>
 
 

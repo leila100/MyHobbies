@@ -16,9 +16,11 @@
                             <h5>Your "About Me" -Text</h5>
                             <p><p>{{ auth()->user()->about_me ?? '' }}</p></p>
                         </div>
-                        <div class="col-md-3">
-                            <img class="img-thumbnail" src="/img/300x400.jpg" alt="{{ auth()->user()->name }}">
-                        </div>
+                        @if (file_exists('img/users/'.auth()->user()->id.'_large.jpg'))
+                            <div class="col-md-3">
+                                    <img class="img-thumbnail" src="/img/users/{{auth()->user()->id}}_large.jpg" alt="{{ auth()->user()->name }}">
+                            </div>
+                        @endif
                     </div>
 
 
