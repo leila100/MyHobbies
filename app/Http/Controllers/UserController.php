@@ -125,4 +125,22 @@ class UserController extends Controller
             $image->heighten(60)->save(public_path() . $userPath . "_thumb.jpg");
         }
     }
+
+    public function deleteImages($userId)
+    {
+        $userPath = "/img/users/" . $userId;
+        if (file_exists(public_path() . $userPath . "_thumb.jpg")) {
+            unlink(public_path() . $userPath . "_thumb.jpg");
+        }
+        if (file_exists(public_path() . $userPath . "_large.jpg")) {
+            unlink(public_path() . $userPath . "_large.jpg");
+        }
+        if (file_exists(public_path() . $userPath . "_pixelated.jpg")) {
+            unlink(public_path() . $userPath . "_pixelated.jpg");
+        }
+
+        return back()->with([
+            'message_success' => 'The image was successfully deleted.'
+        ]);
+    }
 }
