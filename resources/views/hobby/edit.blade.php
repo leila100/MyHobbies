@@ -16,11 +16,12 @@
                             <input type="text" class="form-control {{ $errors->has('name') ? 'border-danger' : '' }}" id="name" name="name" value="{{old('name') ?? $hobby['name'] }}">
                             <small class="form-text text-danger">{!! $errors->first('name') !!}</small>
                         </div>
-                        <div class="mb-2">
-                            @if (file_exists('img/hobbies/'.$hobby->id.'_large.jpg'))
+                        @if (file_exists('img/hobbies/'.$hobby->id.'_large.jpg'))
+                            <div class="mb-2">
                                 <img style="max-width: 400px; max-height:300px;" src="/img/hobbies/{{$hobby->id}}_large.jpg" alt="Hobby Image">
-                            @endif
-                        </div>
+                                <a href="/delete_images/hobby/{{$hobby->id}}" class="btn btn-danger btn-sm float-right">Delete Image</a>
+                            </div>
+                        @endif
                         <div class="form-group">
                             <label for="image">Image</label>
                             <input type="file" class="form-control {{ $errors->has('image') ? 'border-danger' : '' }}" id="image" name="image" value="">
