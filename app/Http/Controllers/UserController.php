@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -66,6 +67,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        abort_unless(Gate::allows('update', $user), 403);
+
         return view('user.edit')->with([
             'user' => $user,
             'message_success' => Session::get('message_success'),
@@ -82,6 +85,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        abort_unless(Gate::allows('update', $user), 403);
+
         $request->validate([
             'motto' => 'min:3',
             'about_me' => 'min:5',
@@ -109,7 +114,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        abort_unless(Gate::allows('delete', $user), 403);
     }
 
     public function saveImages($imageInput, $userId)
